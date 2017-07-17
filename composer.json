@@ -1,0 +1,19 @@
+{
+  "name": "asil/vkmarket",
+  "description": "The PHP library for work with VK Market API",
+  "keywords": ["vk", "vk.com", "api", "market"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Anton Silischev"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Asil\\VkMarket\\": "src/"
+    }
+  }
+}
