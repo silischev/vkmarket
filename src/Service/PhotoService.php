@@ -47,6 +47,8 @@ class PhotoService extends BaseService
 
     /**
      * Возвращает адрес сервера для загрузки фотографии товара
+     * @param Photo $photo
+     * @param boolean $mainPhoto
      * @return string $url
      * @throws VkException
      */
@@ -77,8 +79,9 @@ class PhotoService extends BaseService
 
     /**
      * Сохраняет фотографии для товара
-     * @param Photo $photo
+     * @param string $path
      * @param string $uploadUrl    адрес сервера, полученный в методе getMarketUploadServer
+     * @param boolean $mainPhoto
      * @return int $id      идентификатор фотографии товара
      * @throws VkException
      */
@@ -110,7 +113,7 @@ class PhotoService extends BaseService
 
     /**
      * Сохраняет фотографии для альбома
-     * @param Photo $photo
+     * @param string $path
      * @param string $uploadUrl    адрес сервера, полученный в методе getMarketUploadServer
      * @return int $id      идентификатор фотографии товара
      * @throws VkException
