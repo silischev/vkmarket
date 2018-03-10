@@ -8,6 +8,15 @@ use Asil\VkMarket\Model\Photo;
 
 class AlbumService extends BaseService
 {
+    /**
+     * @param Album $album
+     * @param PhotoService|null $photoService
+     * @param Photo|null $photo
+     *
+     * @return bool
+     *
+     * @throws \Asil\VkMarket\Exception\VkException
+     */
     public function addAlbum(Album $album, PhotoService $photoService = null, Photo $photo = null)
     {
         $arr = [
@@ -20,9 +29,19 @@ class AlbumService extends BaseService
         ];
 
         $content = $this->connection->getRequest('market.addAlbum', $arr);
-        return (boolean)$content['response'];
+        return (boolean) $content['response'];
     }
 
+    /**
+     * @param $albumId
+     * @param Album $album
+     * @param PhotoService|null $photoService
+     * @param Photo|null $photo
+     *
+     * @return bool
+     *
+     * @throws \Asil\VkMarket\Exception\VkException
+     */
     public function editAlbum($albumId, Album $album, PhotoService $photoService = null, Photo $photo = null)
     {
         $arr = [
@@ -37,9 +56,17 @@ class AlbumService extends BaseService
 
         $content = $this->connection->getRequest('market.editAlbum', $arr);
 
-        return (boolean)$content['response'];
+        return (boolean) $content['response'];
     }
 
+    /**
+     * @param array $albumIds
+     * @param $itemId
+     *
+     * @return bool
+     *
+     * @throws \Asil\VkMarket\Exception\VkException
+     */
     public function addProductToAlbum(array $albumIds, $itemId)
     {
         $arr = [
@@ -52,9 +79,16 @@ class AlbumService extends BaseService
 
         $content = $this->connection->getRequest('market.addToAlbum', $arr);
 
-        return (boolean)$content['response'];
+        return (boolean) $content['response'];
     }
 
+    /**
+     * @param int $albumId
+     *
+     * @return Album|bool
+     *
+     * @throws \Asil\VkMarket\Exception\VkException
+     */
     public function getAlbumById($albumId)
     {
         $arr = [
@@ -77,6 +111,13 @@ class AlbumService extends BaseService
         return $album;
     }
 
+    /**
+     * @param int $albumId
+     *
+     * @return bool
+     *
+     * @throws \Asil\VkMarket\Exception\VkException
+     */
     public function deleteAlbum($albumId)
     {
         $arr = [
@@ -88,9 +129,17 @@ class AlbumService extends BaseService
 
         $content = $this->connection->getRequest('market.deleteAlbum', $arr);
 
-        return (boolean)$content['response'];
+        return (boolean) $content['response'];
     }
 
+    /**
+     * @param int $count
+     * @param int $offset
+     *
+     * @return array
+     *
+     * @throws \Asil\VkMarket\Exception\VkException
+     */
     public function getAlbums($count, $offset)
     {
         $arr = [
@@ -114,9 +163,6 @@ class AlbumService extends BaseService
             }
         }
 
-
         return $albumArr;
     }
-
-
 }

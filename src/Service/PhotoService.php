@@ -8,7 +8,15 @@ use Asil\VkMarket\Model\Photo;
 
 class PhotoService extends BaseService
 {
-    public function uploadMainPhoto (Photo $photo) {
+    /**
+     * @param Photo $photo
+     *
+     * @return int|string
+     *
+     * @throws VkException
+     */
+    public function uploadMainPhoto (Photo $photo)
+    {
         $mainPhotoId = '';
 
         if (sizeof($photo->getMainPhotoParams())) {
@@ -22,6 +30,13 @@ class PhotoService extends BaseService
         return $mainPhotoId;
     }
 
+    /**
+     * @param Photo $photo
+     *
+     * @return string
+     *
+     * @throws VkException
+     */
     public function uploadAdditionalPhotos (Photo $photo)
     {
         $additionalPhotoIds = '';
@@ -37,7 +52,15 @@ class PhotoService extends BaseService
         return $additionalPhotoIds;
     }
 
-    public function uploadAlbumPhoto(Photo $photo) {
+    /**
+     * @param Photo $photo
+     *
+     * @return int
+     *
+     * @throws VkException
+     */
+    public function uploadAlbumPhoto(Photo $photo)
+    {
         $uploadUrl = $this->getMarketAlbumUploadServer();
         $path = $photo->getAlbumPhotoParams();
         $albumPhotoId = $this->saveAlbumPicture($path, $uploadUrl);
@@ -47,9 +70,12 @@ class PhotoService extends BaseService
 
     /**
      * Возвращает адрес сервера для загрузки фотографии товара
+     *
      * @param Photo $photo
      * @param boolean $mainPhoto
+     *
      * @return string $url
+     *
      * @throws VkException
      */
     private function getMarketUploadServer(Photo $photo , $mainPhoto = false)
@@ -74,15 +100,19 @@ class PhotoService extends BaseService
         }
 
         $url = $this->connection->getRequest('photos.getMarketUploadServer', $arr);
+
         return $url['response']['upload_url'];
     }
 
     /**
      * Сохраняет фотографии для товара
+     *
      * @param string $path
      * @param string $uploadUrl    адрес сервера, полученный в методе getMarketUploadServer
      * @param boolean $mainPhoto
+     *
      * @return int $id      идентификатор фотографии товара
+     *
      * @throws VkException
      */
     private function savePicture($path, $uploadUrl, $mainPhoto = false)
@@ -107,15 +137,16 @@ class PhotoService extends BaseService
         $content = $this->connection->getRequest('photos.saveMarketPhoto', $arr);
 
         return (int)$content['response'][0]['id'];
-
-
     }
 
     /**
      * Сохраняет фотографии для альбома
+     *
      * @param string $path
      * @param string $uploadUrl    адрес сервера, полученный в методе getMarketUploadServer
+     *
      * @return int $id      идентификатор фотографии товара
+     *
      * @throws VkException
      */
     private function saveAlbumPicture($path, $uploadUrl)
@@ -142,7 +173,9 @@ class PhotoService extends BaseService
 
     /**
      * Возвращает адрес сервера для загрузки фотографии товара
+     *
      * @return string $url
+     *
      * @throws VkException
      */
     private function getMarketAlbumUploadServer()
@@ -159,7 +192,11 @@ class PhotoService extends BaseService
 
     /**
      * Передача файла на сервер
-     * @param string $uploadUrl    адрес сервера, полученный в методе getMarketUploadServer
+     *
+     * @param string $uploadUrl
+     *
+     * @return mixed
+     *
      * @throws VkException
      */
     public function uploadPicture($uploadUrl)
@@ -169,8 +206,6 @@ class PhotoService extends BaseService
         ];
 
         return $this->connection->postRequest($uploadUrl, $postParams);
-
-
     }
 
 

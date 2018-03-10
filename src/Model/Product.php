@@ -6,7 +6,6 @@ namespace Asil\VkMarket\Model;
  * Class Product
  * Описывает продукт в API ВК
  */
-
 class Product
 {
     private $name;
@@ -26,6 +25,7 @@ class Product
 
     /**
      * Product constructor.
+     *
      * @param string $name         название товара
      * @param string $description      описание товара
      * @param int $categoryId       идентификатор категории товара
@@ -188,6 +188,4 @@ class Product
     {
         return $this->vkItemUserlikes;
     }
-
-
 }

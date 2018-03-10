@@ -15,6 +15,7 @@ class Album
 
     /**
      * Album constructor.
+     *
      * @param $title    название подборки
      * @param $photo    id фото подборки
      * @param $mainAlbum    является ли подборка основной

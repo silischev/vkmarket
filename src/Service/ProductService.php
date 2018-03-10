@@ -9,6 +9,14 @@ use Asil\VkMarket\VkConnect;
 
 class ProductService extends BaseService
 {
+    /**
+     * @param Product $product
+     * @param Photo $photo
+     *
+     * @return int
+     *
+     * @throws VkException
+     */
     public function addProduct(Product $product, Photo $photo)
     {
         $photoService = new PhotoService($this->connection);
@@ -32,6 +40,14 @@ class ProductService extends BaseService
         return $id;
     }
 
+    /**
+     * @param Product $product
+     * @param Photo|null $photo
+     *
+     * @return bool
+     *
+     * @throws VkException
+     */
     public function editProduct(Product $product, Photo $photo = null)
     {
         $photoService = new PhotoService($this->connection);
@@ -57,6 +73,13 @@ class ProductService extends BaseService
         return true;
     }
 
+    /**
+     * @param int $id
+     *
+     * @return bool
+     *
+     * @throws VkException
+     */
     public function deleteProduct($id)
     {
         $arr = [
@@ -71,6 +94,13 @@ class ProductService extends BaseService
         return (boolean)$content['response'];
     }
 
+    /**
+     * @param int $id
+     *
+     * @return bool
+     *
+     * @throws VkException
+     */
     public function restoreProduct($id)
     {
         $arr = [
@@ -85,6 +115,13 @@ class ProductService extends BaseService
         return (boolean)$content['response'];
     }
 
+    /**
+     * @param int $id
+     *
+     * @return Product|bool
+     *
+     * @throws VkException
+     */
     public function getProductById($id)
     {
         $arr = [
@@ -133,6 +170,15 @@ class ProductService extends BaseService
         return $product;
     }
 
+    /**
+     * @param int $albumId
+     * @param int $count
+     * @param int $offset
+     *
+     * @return array
+     *
+     * @throws VkException
+     */
     public function getProductsInAlbum($albumId, $count = 10, $offset = 0)
     {
         $arr = [
@@ -187,6 +233,14 @@ class ProductService extends BaseService
         return $productsArr;
     }
 
+    /**
+     * @param int $count
+     * @param string $offset
+     *
+     * @return mixed
+     *
+     * @throws VkException
+     */
     public function getCategories($count = 100, $offset = '')
     {
         $arr = [
@@ -197,7 +251,7 @@ class ProductService extends BaseService
         ];
 
         $content = $this->connection->getRequest('market.getCategories', $arr);
+
         return $content;
     }
-
 }

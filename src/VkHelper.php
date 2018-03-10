@@ -7,7 +7,8 @@ use Asil\VkMarket\Exception\VkException;
 class VkHelper
 {
     /**
-     * @param Array $content  массив с результатом ответа от API ВК
+     * @param array $content  массив с результатом ответа от API ВК
+     *
      * @throws VkException
      */
     public static function checkError($content) {

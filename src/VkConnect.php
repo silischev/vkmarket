@@ -44,6 +44,14 @@ class VkConnect
         return $this->groupId;
     }
 
+    /**
+     * @param string $methodName
+     * @param array $params
+     *
+     * @return mixed
+     *
+     * @throws Exception\VkException
+     */
     public function getRequest($methodName, array $params = [])
     {
         $getParams = '';
@@ -68,6 +76,14 @@ class VkConnect
         return $content;
     }
 
+    /**
+     * @param string $uploadUrl
+     * @param array $params
+     *
+     * @return mixed
+     *
+     * @throws Exception\VkException
+     */
     public function postRequest($uploadUrl, array $params)
     {
         $conn = curl_init($uploadUrl);
