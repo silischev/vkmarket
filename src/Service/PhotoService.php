@@ -187,6 +187,7 @@ class PhotoService extends BaseService
         ];
 
         $url = $this->connection->getRequest('photos.getMarketAlbumUploadServer', $arr);
+        
         return $url['response']['upload_url'];
     }
 

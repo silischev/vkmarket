@@ -32,7 +32,7 @@ class Photo
         }
 
         if ($cropWidth < 400) {
-            throw new VkException('Parametr cropWidth should be greater than or equal to 400');
+            throw new VkException('Parameter cropWidth should be greater than or equal to 400');
         }
 
         $this->mainPhotoParams['path'] = $path;
@@ -44,23 +44,23 @@ class Photo
     /**
      * <b>Количество дополнительных фотографий должно быть не более 4</b>
      *
-     * @param array $path     Массив путей фото на сервере
+     * @param array $paths     Массив путей фото на сервере
      *
      * @throws VkException
      */
-    public function createAdditionalPhoto (array $path)
+    public function createAdditionalPhoto (array $paths)
     {
-        if (sizeof($path) > 4) {
+        if (sizeof($paths) > 4) {
             throw new VkException('Number of additional photos should be no more than 4');
         }
 
-        foreach ($path as $val) {
-            if (!file_exists($val)) {
+        foreach ($paths as $path) {
+            if (!file_exists($path)) {
                 throw new VkException('File ' . $path . ' not found');
             }
         }
 
-        $this->additionalPhotoParams = $path;
+        $this->additionalPhotoParams = $paths;
     }
 
     /**
