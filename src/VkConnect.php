@@ -12,6 +12,10 @@ class VkConnect
 
     /**
      * VkConnect constructor.
+     *
+     * @param $accessToken
+     * @param $groupId
+     * @param $ownerId
      */
     public function __construct($accessToken, $groupId, $ownerId)
     {
