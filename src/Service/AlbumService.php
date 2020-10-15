@@ -158,6 +158,7 @@ class AlbumService extends BaseService
             foreach ($content['response']['items'] as $item) {
                 if ($item['id'] > 0) {
                     $album = new Album($item['title'], $item['photo']['id']);
+                    $album->album_id = $item['id'];
                     $albumArr[] = $album;
                 }
             }
