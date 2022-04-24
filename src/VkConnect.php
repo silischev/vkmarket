@@ -3,7 +3,7 @@ namespace Asil\VkMarket;
 
 class VkConnect
 {
-    const API_VERSION = '5.65';
+    const API_VERSION = '5.81';
     const CONN_URL = 'https://api.vk.com/method/';
 
     private $accessToken;
